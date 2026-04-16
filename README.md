@@ -1,37 +1,6 @@
 # 🏦 Credo Setu (क्रेडो सेतु)
 
-<div align="center">
-
-![Credo Setu Banner](https://via.placeholder.com/1200x300/0a192f/ffffff?text=Credo+Setu+-+Building+a+Digital+Identity+for+India's+Informal+Economy)
-
 **A mobile‑first decentralized ledger that creates verifiable credit history for micro‑merchants using peer validation, AI scoring, and India Stack integration.**
-
-[![HackIndia Spark 6](https://img.shields.io/badge/HackIndia-Spark%206%20%40%20NIT%20Delhi-blue?style=for-the-badge)](https://hackindia.xyz)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
-[![Built with React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)](https://reactjs.org/)
-[![Firebase](https://img.shields.io/badge/Firebase-039BE5?style=for-the-badge&logo=Firebase&logoColor=white)](https://firebase.google.com/)
-
-</div>
-
----
-
-## 📖 Table of Contents
-- [The Invisible Economy](#-the-invisible-economy)
-- [Our Solution: Credo Setu](#-our-solution-credo-setu)
-- [Key Features](#-key-features)
-- [How It Works](#-how-it-works)
-- [Value Proposition](#-value-proposition)
-- [Impact & Feasibility](#-impact--feasibility)
-- [Live Demo & Screenshots](#-live-demo--screenshots)
-- [Tech Stack](#-tech-stack)
-- [Getting Started](#-getting-started)
-- [Project Structure](#-project-structure)
-- [Team](#-team)
-- [License](#-license)
-- [Acknowledgements](#-acknowledgements)
-
----
-
 ## 🕵️ The Invisible Economy
 
 | Metric | Reality |
