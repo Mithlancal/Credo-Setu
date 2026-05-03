@@ -56,15 +56,3 @@ By bridging the gap between cash‑based micro‑businesses and formal financial
 - **Merchants** build credit through their business transactions.
 - **Customers** can optionally build their own credit history by repaying merchant‑issued credit on time.
 
----
-
-## ⚙️ How It Works
-
-```mermaid
-graph TD
-    A[Merchant records transaction] --> B[Transaction hashed & stored in Firebase]
-    B --> C[Peer validation requested]
-    C --> D[Peers approve via mobile app]
-    D --> E[Credit score updates based on pre‑computed logic]
-    E --> F[NBFC dashboard displays verified credit profile]
-    F --> G[Formal loan approval enabled]
