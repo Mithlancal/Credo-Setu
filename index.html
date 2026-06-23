@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Credo Setu | Financial Trust for Professionals</title>
+  <link rel="stylesheet" href="./src/css/style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+  <button class="theme-toggle" onclick="window.toggleTheme()" aria-label="Toggle Theme">
+    <i class="fa-solid fa-sun"></i>
+    <i class="fa-solid fa-moon"></i>
+  </button>
+
+  <div id="app">
+
+    <!-- VIEW: ONBOARDING WIZARD -->
+    <div id="view-onboarding" class="view active wizard-container">
+      <div style="text-align: center; margin-bottom: 40px;">
+        <i class="fa-solid fa-bridge-water text-primary" style="font-size: 48px; margin-bottom: 16px;"></i>
+        <h1>Credo Setu</h1>
+        <p style="color: var(--text-secondary); margin-top: 8px;">The Trust Bridge for Independent Work</p>
+      </div>
+
+      <div class="glass" style="position: relative;">
+        <div class="wizard-progress">
+          <div class="step-dot current" id="dot-1">1</div>
+          <div class="step-dot" id="dot-2">2</div>
+          <div class="step-dot" id="dot-3">3</div>
+        </div>
+
+        <div id="step-1" class="wizard-step active">
+          <h2 style="margin-bottom: 8px;">Create Profile</h2>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Who are you building credit for?
+          </p>
+
+          <div class="input-group">
+            <label>Full Legal Name</label>
+            <input type="text" id="regName" placeholder="e.g. Ramesh Kumar" required>
+          </div>
+          <div class="input-group">
+            <label>Profession Type</label>
+            <select id="regType">
+              <option value="freelancer">Freelancer / Consultant</option>
+              <option value="creator">YouTuber / Content Creator</option>
+              <option value="merchant">Small Business / Street Vendor</option>
+              <option value="self_employed">Self-Employed Professional</option>
+            </select>
+          </div>
+          <div class="input-group">
+            <label>Mobile Number</label>
+            <input type="tel" id="regPhone" placeholder="10-digit mobile number" required>
+          </div>
+          <button class="btn btn-primary" onclick="window.wizardNext(2)">Continue <i
+              class="fa-solid fa-arrow-right"></i></button>
+
+          <div style="text-align: center; margin-top: 20px;">
+            <a href="#" onclick="window.switchView('view-nbfc')"
+              style="color: var(--text-secondary); font-size: 13px; text-decoration: underline;">I am an NBFC Lender</a>
+          </div>
+        </div>
+
+        <div id="step-2" class="wizard-step">
+          <h2 style="margin-bottom: 8px;">Identity Verification</h2>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Link your Aadhaar and PAN for
+            official verification.</p>
+
+          <div id="kycInputs">
+            <div class="input-group">
+              <label>Aadhaar Number</label>
+              <input type="text" id="regAadhaar" placeholder="XXXX XXXX XXXX">
+            </div>
+            <div class="input-group">
+              <label>PAN Number</label>
+              <input type="text" id="regPan" placeholder="ABCDE1234F">
+            </div>
+            <button class="btn btn-primary" onclick="window.simulateKYC(true)">Verify Identity</button>
+            <button class="btn btn-secondary" style="margin-top: 12px;" onclick="window.simulateKYC(false)">Skip KYC
+              (Demo Mode)</button>
+          </div>
+
+          <div id="kycLoader" class="loader-container" style="display: none;">
+            <div class="spinner"></div>
+            <h3>Verifying with UIDAI...</h3>
+            <p style="color: var(--text-muted); font-size: 14px; margin-top: 8px;">Fetching encrypted details securely
+            </p>
+          </div>
+        </div>
+
+        <div id="step-3" class="wizard-step">
+          <h2 style="margin-bottom: 8px;">Link Bank Account</h2>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;">Fetch transaction history securely
+            via Account Aggregator.</p>
+
+          <div id="bankInputs">
+            <div class="glass"
+              style="background: var(--input-bg); padding: 16px; display: flex; align-items: center; gap: 16px; margin-bottom: 24px;">
+              <i class="fa-solid fa-building-columns" style="font-size: 24px; color: var(--text-primary);"></i>
+              <div>
+                <div style="font-weight: 600;">Account Aggregator (AA)</div>
+                <div style="font-size: 12px; color: var(--text-muted);">RBI Regulated Data Fetch</div>
+              </div>
+            </div>
+            <button class="btn btn-primary" onclick="window.simulateBankFetch(true)">Fetch Bank Details</button>
+            <button class="btn btn-secondary" style="margin-top: 12px;" onclick="window.simulateBankFetch(false)">Skip
+              (Demo Mode)</button>
+          </div>
+
+          <div id="bankLoader" class="loader-container" style="display: none;">
+            <div class="spinner"></div>
+            <h3 class="text-success">Connecting to Bank...</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- VIEW: DASHBOARD (Responsive Layout) -->
+    <div id="view-merchant" class="view dash-layout">
+
+      <!-- Responsive Navigation (Sidebar on PC, Bottom Nav on Mobile) -->
+      <nav class="app-nav">
+        <button class="nav-btn active" onclick="window.switchTab('home', this)">
+          <i class="fa-solid fa-chart-pie"></i><span>Score</span>
+        </button>
+        <button class="nav-btn" onclick="window.switchTab('ledger', this)">
+          <i class="fa-solid fa-link"></i><span class="lbl-ledger">Ledger</span>
+        </button>
+        <button class="nav-btn" onclick="window.switchTab('network', this)">
+          <i class="fa-solid fa-users"></i><span class="lbl-network">Network</span>
+        </button>
+        <button class="nav-btn" onclick="window.switchTab('profile', this)">
+          <i class="fa-solid fa-user-shield"></i><span>Profile</span>
+        </button>
+      </nav>
+
+      <main class="dash-main">
+        <header style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+          <div>
+            <div style="font-size: 12px; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1px;"
+              id="dashSubtitle">Verified Profile</div>
+            <h2 id="dashNameDisplay" style="font-size: 24px;">Worker</h2>
+          </div>
+          <div
+            style="width: 48px; height: 48px; border-radius: 50%; background: var(--bg-glass); border: 1px solid var(--text-primary); display: flex; justify-content: center; align-items: center;">
+            <i class="fa-solid fa-user-check" style="color: var(--text-primary);"></i>
+          </div>
+        </header>
+
+        <!-- Dashboard Tab -->
+        <div id="tab-home" class="wizard-step active">
+          <div class="split-panel">
+            <div class="glass score-widget">
+              <h3 style="color: var(--text-secondary); font-size: 14px; font-weight: 500; margin-bottom: 20px;"
+                class="lbl-score">AI Trust Score</h3>
+
+              <div class="score-ring-wrapper">
+                <svg class="score-svg" viewBox="0 0 180 180">
+                  <circle class="score-circle-bg" cx="90" cy="90" r="80"></circle>
+                  <circle class="score-circle-progress" id="scoreCircle" cx="90" cy="90" r="80"></circle>
+                </svg>
+                <div class="score-text-overlay">
+                  <div class="score-number" id="scoreDisplay">300</div>
+                  <div style="font-size: 12px; color: var(--text-muted); font-weight: 600; margin-top: 4px;"
+                    class="lbl-max-score">/ 850</div>
+                </div>
+              </div>
+
+              <div
+                style="display: flex; justify-content: space-between; margin-top: 24px; text-align: left; background: var(--input-bg); padding: 12px; border-radius: var(--radius-sm);">
+                <div>
+                  <div style="font-size: 11px; color: var(--text-muted);">Verified</div>
+                  <div style="font-weight: 600; font-size: 16px;" id="dashTxCount">0</div>
+                </div>
+                <div style="text-align: right;">
+                  <div style="font-size: 11px; color: var(--text-muted);">Integrity</div>
+                  <div style="font-weight: 600; font-size: 16px; color: var(--accent-success);">High</div>
+                </div>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-direction: column; justify-content: center; gap: 16px; margin-top: 24px;">
+              <button class="btn btn-primary" onclick="window.openTxModal()">
+                <i class="fa-solid fa-plus"></i> <span class="lbl-new-tx">Record Transaction</span>
+              </button>
+              <button class="btn btn-secondary" onclick="window.downloadReport()">
+                <i class="fa-solid fa-download"></i> Download Report
+              </button>
+            </div>
+          </div>
+
+          <div style="margin-top: 32px;">
+            <h3 style="font-size: 18px; margin-bottom: 16px;">Recent Activity</h3>
+            <div id="recentTxList" class="tx-list"></div>
+          </div>
+        </div>
+
+        <!-- Ledger Tab -->
+        <div id="tab-ledger" class="wizard-step">
+          <h2 style="margin-bottom: 8px;" class="lbl-ledger-title">Decentralized Ledger</h2>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;" class="lbl-ledger-desc">All
+            transactions are cryptographically hashed via SHA-256 and stored on the peer network.</p>
+
+          <div class="glass" style="padding: 16px;">
+            <div id="fullTxList" class="tx-list" style="margin-top: 0;"></div>
+          </div>
+        </div>
+
+        <!-- Peer Network Tab -->
+        <div id="tab-network" class="wizard-step">
+          <h2 style="margin-bottom: 8px;" class="lbl-network-title">Peer Validation</h2>
+          <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 24px;" class="lbl-network-desc">Boost your
+            AI Trust Score by validating transactions from fellow independent professionals.</p>
+
+          <div id="peerRequestsList" style="display: flex; flex-direction: column; gap: 16px;"></div>
+        </div>
+
+        <!-- Profile & Financials Tab -->
+        <div id="tab-profile" class="wizard-step">
+          <h2 style="margin-bottom: 24px;">Profile & Financials</h2>
+
+          <!-- Verifications -->
+          <div class="glass" style="margin-bottom: 24px;">
+            <h3 style="font-size: 16px; margin-bottom: 16px;">Verifications</h3>
+            <div class="badge-row">
+              <div class="badge-icon success"><i class="fa-solid fa-phone"></i></div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600;">Mobile Verified</div>
+                <div style="font-size: 12px; color: var(--text-muted);">OTP Authenticated</div>
+              </div>
+            </div>
+            <div class="badge-row" id="badgeKyc">
+              <div class="badge-icon warning"><i class="fa-solid fa-id-card"></i></div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600;" class="badge-title">KYC Pending</div>
+                <div style="font-size: 12px; color: var(--text-muted);" class="badge-desc">Aadhaar & PAN not linked</div>
+              </div>
+            </div>
+            <div class="badge-row" id="badgeBank">
+              <div class="badge-icon warning"><i class="fa-solid fa-building-columns"></i></div>
+              <div style="flex: 1;">
+                <div style="font-weight: 600;" class="badge-title">Bank Not Linked</div>
+                <div style="font-size: 12px; color: var(--text-muted);" class="badge-desc">Account Aggregator skipped</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Score Comparison -->
+          <div class="glass" style="margin-bottom: 24px;">
+            <h3 style="font-size: 16px; margin-bottom: 16px;">Score Comparison</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <div>
+                <div style="font-size: 12px; color: var(--text-muted);">Traditional CIBIL</div>
+                <div style="font-size: 24px; font-weight: 700; color: var(--accent-danger);">N/A</div>
+              </div>
+              <div style="text-align: right;">
+                <div style="font-size: 12px; color: var(--text-muted);">Credo Trust Score</div>
+                <div style="font-size: 24px; font-weight: 700; color: var(--accent-success);" id="profScoreVal">300
+                </div>
+              </div>
+            </div>
+            <p style="font-size: 12px; color: var(--text-secondary);">Because you are an independent worker, traditional
+              banks lack data. Credo bridges this gap using peer-validation.</p>
+          </div>
+
+          <!-- Additional Financials -->
+          <h3 style="font-size: 16px; margin-bottom: 16px;">Linked Assets</h3>
+          <div class="grid-cards" style="grid-template-columns: 1fr; gap: 16px;">
+            <div class="glass"
+              style="padding: 16px; display: flex; justify-content: space-between; align-items: center;" id="assetCard">
+              <div>
+                <div style="font-weight: 600;">Credit Cards</div>
+                <div style="font-size: 12px; color: var(--text-muted);" class="asset-status">0 Linked</div>
+              </div>
+              <button class="btn-secondary asset-btn" style="padding: 8px 16px; border-radius: 8px; font-size: 12px;"
+                onclick="window.linkAsset('card')">Add Card</button>
+            </div>
+            <div class="glass"
+              style="padding: 16px; display: flex; justify-content: space-between; align-items: center;" id="assetItr">
+              <div>
+                <div style="font-weight: 600;">Income Tax Return (ITR)</div>
+                <div style="font-size: 12px; color: var(--text-muted);" class="asset-status">Not Uploaded</div>
+              </div>
+              <button class="btn-secondary asset-btn" style="padding: 8px 16px; border-radius: 8px; font-size: 12px;"
+                onclick="window.linkAsset('itr')">Upload ITR</button>
+            </div>
+          </div>
+        </div>
+
+      </main>
+    </div>
+
+
+    <!-- VIEW: NBFC LENDER DASHBOARD -->
+    <div id="view-nbfc" class="view">
+      <header
+        style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; margin-top: 20px;">
+        <div style="display: flex; align-items: center; gap: 16px;">
+          <div
+            style="width: 48px; height: 48px; border-radius: var(--radius-sm); background: var(--text-primary); display: flex; justify-content: center; align-items: center; color: var(--bg-base); font-size: 24px;">
+            <i class="fa-solid fa-building-columns"></i>
+          </div>
+          <div>
+            <h1 style="font-size: 24px; line-height: 1;">Credo Setu</h1>
+            <div
+              style="font-size: 12px; color: var(--text-secondary); letter-spacing: 2px; text-transform: uppercase; font-weight: 600; margin-top: 4px;">
+              Lender Portal</div>
+          </div>
+        </div>
+        <button class="btn btn-secondary" style="width: auto; padding: 10px 20px;"
+          onclick="window.switchView('view-onboarding'); document.body.classList.remove('nbfc-mode');">
+          Exit Portal
+        </button>
+      </header>
+
+      <div class="grid-cards" style="margin-bottom: 40px;">
+        <div class="glass" style="text-align: center;">
+          <div style="font-size: 40px; font-weight: 800;">₹8.4M</div>
+          <div style="color: var(--text-muted); font-size: 14px; font-weight: 500; margin-top: 8px;">Total Verified
+            Volume</div>
+        </div>
+        <div class="glass" style="text-align: center;">
+          <div style="font-size: 40px; font-weight: 800;">24,102</div>
+          <div style="color: var(--text-muted); font-size: 14px; font-weight: 500; margin-top: 8px;">Active
+            Professionals</div>
+        </div>
+        <div class="glass" style="text-align: center;">
+          <div style="font-size: 40px; font-weight: 800; color: var(--accent-success);">99.2%</div>
+          <div style="color: var(--text-muted); font-size: 14px; font-weight: 500; margin-top: 8px;">Ledger Integrity
+            Rate</div>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 24px;">
+        <h2 style="font-size: 24px;">Verified Pool</h2>
+        <button class="btn btn-secondary" style="width: auto; padding: 10px 20px;"><i class="fa-solid fa-filter"></i>
+          Risk Filter</button>
+      </div>
+
+      <div id="nbfcGrid" class="grid-cards"></div>
+    </div>
+
+
+    <!-- MODAL: NEW TRANSACTION -->
+    <div class="modal-overlay" id="txModal">
+      <div class="modal-content">
+        <button class="close-modal" onclick="window.closeTxModal()"><i class="fa-solid fa-xmark"></i></button>
+        <h2 style="margin-bottom: 24px;" class="lbl-new-tx">Record Transaction</h2>
+
+        <div class="input-group">
+          <label>Transaction Type</label>
+          <select id="txType">
+            <option value="freelance">Freelance/Gig Payment (Income)</option>
+            <option value="sale">Cash Sale (Income)</option>
+            <option value="credit">Credit Given / Loaned</option>
+            <option value="repayment">Credit Repaid (Collection)</option>
+          </select>
+        </div>
+        <div class="input-group">
+          <label>Amount (₹)</label>
+          <input type="number" id="txAmount" placeholder="e.g. 5000" required>
+        </div>
+        <div class="input-group">
+          <label>Client / Identifier (Optional)</label>
+          <input type="text" id="txPhone" placeholder="Client name or reference">
+        </div>
+
+        <button class="btn btn-primary" onclick="window.submitTransaction()" style="margin-top: 16px;">
+          <i class="fa-solid fa-lock"></i> Record & Hash
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- PRINT ONLY REPORT -->
+  <div id="printReport" class="report-only">
+    <h1>Credo Setu | Financial Trust Report</h1>
+    <div class="report-row">
+      <strong>Name:</strong> <span id="prName"></span>
+    </div>
+    <div class="report-row">
+      <strong>Profession:</strong> <span id="prType"></span>
+    </div>
+    <div class="report-row">
+      <strong>Mobile:</strong> <span id="prPhone"></span>
+    </div>
+    <div class="report-row">
+      <strong>KYC Verified:</strong> <span id="prKyc"></span>
+    </div>
+    <div class="report-row">
+      <strong>Credo Trust Score:</strong> <span id="prScore"></span> / 850
+    </div>
+
+    <h3>Verified Ledger</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Type</th>
+          <th>Identifier</th>
+          <th>Amount (₹)</th>
+          <th>Hash (SHA-256)</th>
+        </tr>
+      </thead>
+      <tbody id="prTable">
+      </tbody>
+    </table>
+  </div>
+
+  <script src="./src/js/app.js?v=4"></script>
+</body>
+
+</html>

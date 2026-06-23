@@ -1,58 +1,66 @@
 # 🏦 Credo Setu (क्रेडो सेतु)
+**The Trust Bridge for the Invisible Economy**
 
-**A mobile‑first decentralized ledger that creates verifiable credit history for micro‑merchants using peer validation, AI scoring, and India Stack integration.**
+A mobile-first, decentralized platform that creates a verifiable, AI-powered credit history for **independent professionals, freelancers, creators, and small street vendors** who are currently excluded from traditional banking systems.
+
+---
+
 ## 🕵️ The Invisible Economy
 
 | Metric | Reality |
 |--------|---------|
-| **Workforce Excluded** | **80%** of India's workforce cannot access formal credit |
-| **Micro‑Merchants** | **60 Million+** street vendors, kirana shops, artisans |
-| **Cash Dependency** | **100%** cash economy → zero digital footprint |
-| **GDP Contribution** | **50%+** of India's GDP comes from the informal sector |
-| **Predatory Lending** | When emergency strikes → **साहूकार** (moneylender) charges **5‑10% per month** (60‑120% APR) |
+| **Workforce Excluded** | **80%** of India's workforce cannot access formal credit because they lack a traditional CIBIL score. |
+| **Diverse Demographics** | Millions of street vendors, gig-workers, freelancers, and YouTubers operate in a financial blindspot. |
+| **Predatory Lending** | Without data, banks won't lend. In emergencies, workers turn to loan sharks charging **60‑120% APR**. |
 
-> **Result:** Generational poverty despite relentless hard work.  
-> **Root Cause:** Banks cannot lend without data → No data = No loan.
+> **Result:** Generational poverty and stunted business growth despite relentless hard work.  
+> **Root Cause:** No traditional data = No loan.
 
 ---
 
 ## 🚀 Our Solution: Credo Setu
 
-**Credo Setu** (क्रेडो सेतु – “Credit Bridge”) transforms how India's informal economy builds financial trust.  
-We provide a **mobile‑first, decentralized ledger** that enables micro‑merchants to:
+**Credo Setu** transforms how the independent economy builds financial trust. We provide a decentralized ledger that enables anyone—from a local tea vendor to a digital freelancer—to:
 
-- Record daily transactions effortlessly
-- Validate each other's business activity through peer endorsements
-- Generate a **tamper‑proof, AI‑powered credit score**
-- Connect directly with **NBFCs and formal lenders** via India Stack
+- **Record Transactions:** Log cash sales, freelance income, and credit easily.
+- **Peer Validation:** Validate each other's business activity through community endorsements.
+- **AI-Powered Trust Score:** Generate a tamper-proof credit score that dynamically updates as transactions are verified.
+- **Link Financials:** Optionally link Credit Cards, ITR (Income Tax Returns), and Bank Accounts via the Account Aggregator framework to boost trust.
+- **NBFC Access:** Connect directly with formal lenders (NBFCs) who can view these verified profiles.
 
-By bridging the gap between cash‑based micro‑businesses and formal financial institutions, Credo Setu turns **trust into a digital asset**.
+By bridging the gap between independent work and formal financial institutions, Credo Setu turns **community trust into a digital asset**.
 
 ---
 
-## ✨ Key Features
+## ✨ Key Features & Demo Capabilities
 
-### 1️⃣ Decentralised Transaction Ledger
-- Each transaction is hashed and linked using a simplified **Merkle tree** (SHA‑256).
-- No central authority can alter the record – **community‑verified integrity**.
+### 1️⃣ Decentralized Ledger
+Each transaction is cryptographically hashed using **SHA-256**, linking it to the previous transaction in a simplified Merkle Tree. This guarantees tamper-proof integrity.
 
-### 2️⃣ Peer Validation Network
-- Fellow merchants confirm transactions with a single tap.
-- Simulated via **Firebase real‑time updates** in the prototype; ready for full P2P implementation.
+### 2️⃣ Adaptive Interface (Simple vs. Pro Mode)
+The app adapts to the user. If an onboarding user selects "Street Vendor," the app uses simplified terminology ("Trust Points", "Daily Entry"). If they select "Freelancer," it uses professional financial language.
 
-### 3️⃣ AI‑Driven Credit Scoring
-- Dynamic score based on **transaction frequency**, **repayment timeliness**, and **peer approvals**.
-- Prototype uses hard‑coded logic; production version integrates **India Stack APIs** (Aadhaar eKYC, Account Aggregator, UPI).
+### 3️⃣ Interactive Profile & Document Linkage
+Users can easily view their KYC status (Aadhaar & PAN), Bank Linkage status, and link advanced financial assets like Credit Cards and ITRs to enrich their profile.
 
-### 4️⃣ QR‑Based Merchant Identification
-- Simple random ID generation for demo (simulated scanning).
-- Enables seamless merchant onboarding and transaction tagging.
+### 4️⃣ Downloadable Trust Reports
+With a single click, users can generate and download a comprehensive, printable HTML/PDF **Financial Trust Report** detailing their verified ledger and AI score.
 
-### 5️⃣ NBFC Dashboard Integration
-- Static dashboard view demonstrates how financial institutions would access verified credit histories.
-- Built to integrate with **AA (Account Aggregator)** framework.
+### 5️⃣ Dual Theme Architecture
+A high-end UI featuring a professional Light Mode and a deep, shadow-based "Darkrai" Dark Mode. The interface is highly responsive, adapting perfectly from mobile screens to full desktop dashboards.
 
-### 6️⃣ Dual‑Sided Credit Building
-- **Merchants** build credit through their business transactions.
-- **Customers** can optionally build their own credit history by repaying merchant‑issued credit on time.
+---
 
+## 💻 Hosting & Setup (GitHub Pages)
+
+Credo Setu has been engineered as a pure **Single Page Application (SPA)** using Vanilla HTML, CSS, and JavaScript. It requires zero build tools and can be hosted instantly on GitHub Pages.
+
+**To run locally:**
+1. Clone the repository.
+2. Double-click `index.html` to open it in your browser.
+
+**To deploy to GitHub Pages:**
+1. Push the repository to GitHub.
+2. Go to **Settings** > **Pages**.
+3. Set the Source to deploy from your `main` branch.
+4. Your fully working demo is now live globally!
